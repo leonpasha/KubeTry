@@ -1,0 +1,19 @@
+Запускаем миникуб:
+	minikube start
+
+Создать pod:
+	kubectl create -f /home/lpavlo/javaTry/KubeTry/pod.yaml
+
+Посмотреть какие поды есть и какие у них статусы:
+	kubectl get po
+
+Редактировать под:
+	kubectl edit pod nginx-1
+	EDITOR=vi !!
+
+посмотреть описание пода:
+	kubectl describe pod nginx-1
+	
+удалить все поды:
+	kubectl delete po --all
+
