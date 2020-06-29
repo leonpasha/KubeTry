@@ -71,4 +71,17 @@ ConfigMap:
 Создать все, что есть в папке:
     kubectl apply -f .
 
+Посмотреть IP адреса подов
+    kubectl get po -o wide
+
+Посмотреть полный yaml пода с каким он поднялся:
+    kubectl get po -o yaml
+
+Чтобы посмотреть на ingress-controller:
+    kubectl get pods -n kube-system
+
+Там в списке находим ingress-nginx-controller....
+И иммено его подставляем в команду:
+    kubectl exec --namespace kube-system ingress-nginx-controller-7bb4c67d67-vxx7b cat /etc/nginx/nginx.conf
+
 
