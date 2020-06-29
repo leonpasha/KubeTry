@@ -1,8 +1,10 @@
 Запускаем миникуб:
 	minikube start
 
+перейти в терминале во внутрь папки src и выполнять команды из нее.
+
 Создать pod:
-	kubectl create -f /home/lpavlo/javaTry/KubeTry/pod.yaml
+	kubectl create -f 01_pod_simple/pod.yaml
 
 Посмотреть какие поды есть и какие у них статусы:
 	kubectl get po
@@ -16,4 +18,57 @@
 	
 удалить все поды:
 	kubectl delete po --all
+
+Посмотреть все labels по pod:
+    kubectl get po --show-labels
+
+Создать сервис с yaml файла:
+    kubectl create -f 04_service/service.yaml
+
+Зайти в контейнер в терминал:
+    kubectl exec -t -i my-pod-nginx bash
+Или новая версия:
+    kubectl exec -t -i my-pod-nginx -- bash
+
+Устанавливаем во внутрь curl:
+    apt-get update -y && apt-get install curl -y
+
+Проверяем:
+    curl my-service:8880
+
+Ingress:
+Создаем:
+    kubectl create -f 05_ingress/ingress.yaml
+
+Проверяем:
+    kubectl get ingress
+
+Включить для миникуба:
+    minikube addons enable ingress
+
+Проверяем что оно включено:
+    kubectl get pods -n kube-system
+
+В /etc/hosts Добавляем строку (ip берем с ADDRESS команды kubectl get ingress )
+    192.168.99.100	student.io
+
+Проверяем через:
+     curl student.io
+
+Смотреть за изменениями статусов подов в реальном времени:
+     kubectl get po -w
+
+ConfigMap:
+Создаем:
+     kubectl create -f 07_config_map/config_map.yaml
+
+Для визуализации что происходит, нужно запустить еще депроймент:
+    kubectl create -f 03_deployment/deployment_with_config_map.yaml
+
+проверяем через curl:
+    curl student.io
+
+Создать все, что есть в папке:
+    kubectl apply -f .
+
 
